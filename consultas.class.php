@@ -69,7 +69,13 @@
                 $datos = explode(".",$nombre);
                 $extension = end($datos);
 
-                $nombre = $datos[0];
+                for($i=0;$i<(count($datos)-1);$i++){
+                    if($i==0){
+                        $nombre = $datos[$i];
+                    }else{
+                        $nombre .= '.'.$datos[$i];
+                    }
+                }
 
                 $sql = $conn->prepare("INSERT INTO archivos_obtenidos VALUES(NULL,'".$id."','".$nombre."','".$date."')");
                 $sql->execute();
